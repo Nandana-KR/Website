@@ -13,7 +13,7 @@ export default function WhyChoose() {
     <section className="bg-ink-950 py-20 text-white lg:py-24">
       <div className="site-container grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-20">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="section-kicker text-aqua-300">The Ever Smile difference</p>
+          <p className="section-kicker text-aqua-300">The SmileCare difference</p>
           <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight sm:text-4xl">Better dental care begins with a better <span className="text-aqua-300">experience.</span></h2>
           <p className="mt-5 max-w-md text-base leading-relaxed text-ink-200">We make the journey feel clear and comfortable, so you can focus on the result: a healthier smile you feel proud to share.</p>
         </motion.div>
