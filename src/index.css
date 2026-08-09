@@ -9,11 +9,11 @@
   }
 
   body {
-    @apply bg-white text-slate-800 antialiased font-sans;
+    @apply bg-ivory text-neutral-800 antialiased font-sans;
   }
 
   ::selection {
-    @apply bg-brand-100 text-brand-900;
+    @apply bg-primary-100 text-primary-900;
   }
 }
 
@@ -21,25 +21,45 @@
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold
            transition-all duration-300 focus:outline-none focus-visible:ring-2
-           focus-visible:ring-brand-400 focus-visible:ring-offset-2;
+           focus-visible:ring-primary-400 focus-visible:ring-offset-2;
   }
 
   .btn-primary {
-    @apply btn bg-gradient-to-r from-brand-600 to-teal-500 text-white
-           shadow-soft hover:shadow-card hover:-translate-y-0.5 active:translate-y-0;
+    @apply btn bg-primary-600 text-white
+           shadow-soft hover:bg-primary-700 hover:shadow-card hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .btn-secondary {
-    @apply btn bg-white text-slate-700 ring-1 ring-slate-200
-           shadow-sm hover:ring-brand-200 hover:text-brand-700 hover:-translate-y-0.5 active:translate-y-0;
+    @apply btn bg-white text-neutral-700 ring-1 ring-neutral-200
+           shadow-soft hover:ring-primary-200 hover:text-primary-700 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent-500 text-white
+           shadow-soft hover:bg-accent-600 hover:shadow-card hover:-translate-y-0.5 active:translate-y-0;
   }
 
   .container-px {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
   }
 
-  /* Section divider — optional soft line between sections */
-  .section-divider {
-    @apply mx-auto h-px w-full max-w-5xl bg-gradient-to-r from-transparent via-slate-200 to-transparent;
+  .section-label {
+    @apply inline-flex items-center gap-2 rounded-full border border-primary-100 bg-primary-50 px-4 py-1.5 text-sm font-semibold text-primary-700;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl lg:text-[2.75rem];
+  }
+
+  .section-subtitle {
+    @apply text-base leading-relaxed text-neutral-500 sm:text-lg;
+  }
+
+  .card {
+    @apply rounded-2xl border border-neutral-100 bg-white p-6 shadow-soft transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-card;
   }
 }

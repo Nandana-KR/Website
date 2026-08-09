@@ -4,53 +4,81 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Premium healthcare palette
-        brand: {
-          50: "#eef7ff",
-          100: "#d9edff",
-          200: "#bce0ff",
-          300: "#8ecdff",
-          400: "#59b0ff",
-          500: "#2f8fff",
-          600: "#1a6ff5",
-          700: "#1657e1",
-          800: "#1948b6",
-          900: "#1a418f",
+        // Warm premium healthcare palette inspired by reference
+        primary: {
+          50: "#f0f4ff",
+          100: "#e0eaff",
+          200: "#c7d7fe",
+          300: "#a4bcfc",
+          400: "#7b97f8",
+          500: "#5a72f2",
+          600: "#4353e6",
+          700: "#3641d3",
+          800: "#2e37ab",
+          900: "#2b3487",
+          950: "#1a1f52",
         },
-        teal: {
-          50: "#eaf7f6",
-          100: "#cbeeec",
-          200: "#9bdedb",
-          300: "#63c7c4",
-          400: "#38acaa",
-          500: "#1f9190",
-          600: "#167375",
-          700: "#155c5f",
-          800: "#154a4d",
-          900: "#153e41",
+        accent: {
+          50: "#fdf4f3",
+          100: "#fce7e4",
+          200: "#fbd3ce",
+          300: "#f6b3ab",
+          400: "#ef877a",
+          500: "#e3604f",
+          600: "#cf4433",
+          700: "#ae3627",
+          800: "#903024",
+          900: "#782d24",
         },
+        neutral: {
+          50: "#fafaf9",
+          100: "#f5f5f4",
+          200: "#e7e5e4",
+          300: "#d6d3d1",
+          400: "#a8a29e",
+          500: "#78716c",
+          600: "#57534e",
+          700: "#44403c",
+          800: "#292524",
+          900: "#1c1917",
+          950: "#0f0e0d",
+        },
+        ivory: "#fefdfb",
+        cream: "#faf8f5",
       },
       fontFamily: {
         sans: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
         display: ["Sora", "Plus Jakarta Sans", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 10px 40px -12px rgba(16, 71, 130, 0.18)",
-        card: "0 20px 50px -20px rgba(16, 71, 130, 0.28)",
-        glow: "0 0 0 1px rgba(255,255,255,0.6), 0 24px 60px -24px rgba(31, 145, 144, 0.45)",
+        soft: "0 4px 24px -4px rgba(26, 31, 82, 0.08)",
+        card: "0 12px 40px -12px rgba(26, 31, 82, 0.12)",
+        elevated: "0 20px 60px -20px rgba(26, 31, 82, 0.18)",
+        glow: "0 0 0 1px rgba(90, 114, 242, 0.1), 0 8px 32px -8px rgba(90, 114, 242, 0.2)",
       },
       backgroundImage: {
-        "hero-radial":
-          "radial-gradient(1200px 600px at 100% -10%, rgba(47,143,255,0.12), transparent 60%), radial-gradient(900px 500px at -10% 20%, rgba(31,145,144,0.12), transparent 55%)",
+        "hero-gradient":
+          "radial-gradient(ellipse 80% 60% at 50% -20%, rgba(90, 114, 242, 0.08), transparent 70%)",
+        "section-gradient":
+          "linear-gradient(180deg, #fefdfb 0%, #f5f5f4 100%)",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+        "5xl": "2.5rem",
       },
       keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       animation: {
-        float: "float 6s ease-in-out infinite",
+        "fade-up": "fade-up 0.6s ease-out forwards",
+        float: "float 5s ease-in-out infinite",
       },
     },
   },
