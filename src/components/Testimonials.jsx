@@ -1,71 +1,20 @@
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 const REVIEWS = [
-  {
-    name: "Ramesh K.",
-    text: "I have been to several dental clinics over the years, but none compared to the exceptional care I received here. The staff made me feel welcomed from the moment I walked in, and the procedure was virtually painless. I left feeling confident in my smile.",
-  },
-  {
-    name: "Sneha M.",
-    text: "As someone who has always been anxious about visiting the dentist, I cannot express how grateful I am. The team went above and beyond to ensure my comfort. They were patient, answered all my questions, and made me feel at ease. I no longer dread dental visits.",
-  },
-  {
-    name: "Vijay R.",
-    text: "The team is always friendly, professional, and genuinely cares about oral health. Whether a routine cleaning or a complex procedure, I know I am in good hands. The state-of-the-art facility gives me confidence that I am receiving the best possible care.",
-  },
+  { name: "Ramesh K.", text: "The team made me feel comfortable from the moment I walked in. Everything was explained clearly and the experience felt calm and professional." },
+  { name: "Sneha M.", text: "I used to feel anxious about dental visits, but the gentle approach here completely changed that. I felt listened to and cared for." },
+  { name: "Vijay R.", text: "A welcoming clinic, a thoughtful team, and modern care. The entire experience felt much easier than I expected." },
 ];
-
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } };
 
 export default function Testimonials() {
   return (
-    <section className="bg-white py-20 lg:py-28">
-      <div className="container-site">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          <p className="section-label justify-center">Testimonials</p>
-          <h2 className="section-title mt-4">Hear What <span className="text-coral-500">They Say</span></h2>
-          <p className="section-desc mx-auto mt-3">
-            Real experiences from patients who trusted us with their smiles.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3"
-        >
-          {REVIEWS.map((r) => (
-            <motion.div key={r.name} variants={item} className="relative rounded-2xl border border-navy-100/60 bg-cream p-6 shadow-soft">
-              <Quote className="absolute right-5 top-5 h-10 w-10 text-coral-100" strokeWidth={1.2} />
-              <p className="relative text-sm leading-relaxed text-navy-600 italic">
-                "{r.text}"
-              </p>
-              <div className="mt-5 flex items-center gap-3 border-t border-navy-100/50 pt-4">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-navy-900 font-display text-sm font-bold text-white">
-                  {r.name.charAt(0)}
-                </span>
-                <div>
-                  <p className="text-sm font-bold text-navy-900">{r.name}</p>
-                  <p className="text-xs text-navy-400">Patient</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <p className="mt-6 text-center text-xs italic text-navy-400">
-          * Testimonials are sample content for demonstration purposes.
-        </p>
+    <section className="bg-aqua-50/70 py-20 lg:py-28">
+      <div className="site-container">
+        <div className="mx-auto max-w-2xl text-center"><p className="section-kicker">Patient stories</p><h2 className="section-heading mt-4">Care people remember for the <span className="text-aqua-600">right reasons.</span></h2><p className="section-copy mx-auto mt-4">Sample testimonials shown for this demo presentation.</p></div>
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {REVIEWS.map((review, index) => <motion.article key={review.name} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .1 }} className="relative rounded-[2rem] border border-aqua-100 bg-white p-7 shadow-soft"><Quote className="absolute right-6 top-6 h-9 w-9 text-aqua-100" strokeWidth={1.4} /><div className="flex gap-1 text-gold-500">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}</div><p className="relative mt-5 text-base leading-relaxed text-ink-700">“{review.text}”</p><div className="mt-6 flex items-center gap-3 border-t border-ink-100 pt-5"><span className="grid h-10 w-10 place-items-center rounded-full bg-ink-950 font-display font-extrabold text-white">{review.name[0]}</span><div><p className="text-sm font-bold text-ink-950">{review.name}</p><p className="text-xs text-ink-500">Sample patient profile</p></div></div></motion.article>)}
+        </div>
       </div>
     </section>
   );

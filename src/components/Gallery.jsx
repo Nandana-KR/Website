@@ -1,59 +1,23 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
 
 const IMAGES = [
-  { src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80", caption: "Reception" },
-  { src: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80", caption: "Treatment Room" },
-  { src: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80", caption: "Procedure" },
-  { src: "https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=800&q=80", caption: "Implant Tech" },
-  { src: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80", caption: "Interior" },
-  { src: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80", caption: "Team" },
+  ["https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1100&q=90", "Reception"],
+  ["https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=90", "Treatment room"],
+  ["https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=90", "Patient care"],
+  ["https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=900&q=90", "Clinic details"],
+  ["https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=900&q=90", "Modern equipment"],
 ];
 
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
-const item = { hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.5 } } };
-
 export default function Gallery() {
-  const [lb, setLb] = useState(null);
-  const prev = () => setLb((i) => (i > 0 ? i - 1 : IMAGES.length - 1));
-  const next = () => setLb((i) => (i < IMAGES.length - 1 ? i + 1 : 0));
-
+  const [active, setActive] = useState(null);
+  const move = (direction) => setActive((current) => (current + direction + IMAGES.length) % IMAGES.length);
   return (
-    <section id="gallery" className="bg-cream py-20 lg:py-28">
-      <div className="container-site">
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }} className="text-center">
-          <p className="section-label justify-center">Gallery</p>
-          <h2 className="section-title mt-4">A Glimpse <span className="text-coral-500">Inside</span></h2>
-          <p className="section-desc mx-auto mt-3">Modern, hygienic, and designed for your comfort.</p>
-        </motion.div>
-
-        <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} className="mt-12 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
-          {IMAGES.map((img, i) => (
-            <motion.button key={i} variants={item} onClick={() => setLb(i)} className="group relative overflow-hidden rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-coral-400" aria-label={`View ${img.caption}`}>
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={img.src} alt={img.caption} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              </div>
-              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-navy-950/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <span className="p-4 text-sm font-semibold text-white">{img.caption}</span>
-              </div>
-            </motion.button>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lb !== null && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-navy-950/90 p-4 backdrop-blur-sm" onClick={() => setLb(null)}>
-            <button onClick={() => setLb(null)} className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Close"><X className="h-5 w-5" /></button>
-            <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Previous"><ChevronLeft className="h-5 w-5" /></button>
-            <motion.img key={lb} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} src={IMAGES[lb].src} alt={IMAGES[lb].caption} className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl" onClick={(e) => e.stopPropagation()} />
-            <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 top-1/2 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Next"><ChevronRight className="h-5 w-5" /></button>
-            <p className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white backdrop-blur">{IMAGES[lb].caption}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <section id="gallery" className="bg-white py-20 lg:py-28"><div className="site-container"><div className="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-kicker">Inside the clinic</p><h2 className="section-heading mt-4">A space made for <span className="text-aqua-600">ease.</span></h2></div><p className="section-copy max-w-sm md:text-right">Clean lines, modern treatment spaces, and a calm environment for every visit.</p></div><div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-2"><ImageTile image={IMAGES[0]} index={0} active={active} setActive={setActive} className="sm:col-span-2 lg:col-span-7 lg:row-span-2" /><ImageTile image={IMAGES[1]} index={1} active={active} setActive={setActive} className="lg:col-span-5" /><ImageTile image={IMAGES[2]} index={2} active={active} setActive={setActive} className="lg:col-span-5" /></div></div>
+      <AnimatePresence>{active !== null && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-ink-950/90 p-4 backdrop-blur-sm" onClick={() => setActive(null)}><button onClick={() => setActive(null)} aria-label="Close gallery" className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20"><X /></button><button onClick={(e) => { e.stopPropagation(); move(-1); }} aria-label="Previous image" className="absolute left-4 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:left-8"><ChevronLeft /></button><motion.img key={active} initial={{ opacity: 0, scale: .95 }} animate={{ opacity: 1, scale: 1 }} src={IMAGES[active][0]} alt={IMAGES[active][1]} className="max-h-[82vh] max-w-full rounded-3xl object-contain" onClick={(e) => e.stopPropagation()} /><button onClick={(e) => { e.stopPropagation(); move(1); }} aria-label="Next image" className="absolute right-4 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:right-8"><ChevronRight /></button><p className="absolute bottom-6 rounded-full bg-white/10 px-4 py-2 text-sm text-white">{IMAGES[active][1]}</p></motion.div>}</AnimatePresence>
     </section>
   );
 }
+
+function ImageTile({ image, index, setActive, className }) { return <motion.button initial={{ opacity: 0, scale: .97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * .08 }} onClick={() => setActive(index)} className={`group relative min-h-[190px] overflow-hidden rounded-3xl bg-aqua-50 text-left ${className}`}><img src={image[0]} alt={image[1]} loading="lazy" className="h-full min-h-[190px] w-full object-cover transition-transform duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-ink-950/55 via-transparent to-transparent" /><span className="absolute bottom-5 left-5 text-sm font-bold text-white">{image[1]}</span><span className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/15 text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100"><Expand className="h-4 w-4" /></span></motion.button>; }

@@ -1,64 +1,9 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, MessageCircle, ExternalLink } from "lucide-react";
+import { Clock3, MapPin, MessageCircle, Navigation, Phone, Sparkles } from "lucide-react";
 
-const WA = "https://wa.me/917306674866?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment.";
-const INFO = [
-  { icon: MapPin, title: "Address", text: "123, MG Road, 2nd Floor\nCity Centre, Near Metro Station\nYour City, State 560001" },
-  { icon: Phone, title: "Phone", text: "+91 73066 74866", href: "tel:+917306674866" },
-  { icon: Clock, title: "Hours", text: "Mon – Sat: 9:00 AM – 8:00 PM\nSunday: 10:00 AM – 2:00 PM" },
-  { icon: MessageCircle, title: "WhatsApp", text: "Quick appointment booking", href: WA },
-];
-
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
-const item = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
+const WA = "https://wa.me/918593019901?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment%20at%20Ever%20Smile%20Dental%20Clinic.";
+const INFO = [[MapPin, "Clinic address", "1st Floor, Chanjilakkil Complex, 27/666\nVaikom Road, opposite Govt Ayurveda College\nPuthiyakavu, Thrippunithura, Ernakulam, Kerala 682301"], [Phone, "Phone", "085930 19901"], [Clock3, "Hours", "Open today · Closes 7:30 PM"], [MessageCircle, "WhatsApp", "Message the clinic for an appointment"]];
 
 export default function Contact() {
-  return (
-    <section id="contact" className="bg-white py-20 lg:py-28">
-      <div className="container-site">
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5 }} className="text-center">
-          <p className="section-label justify-center">Location</p>
-          <h2 className="section-title mt-4">Find <span className="text-coral-500">Us</span></h2>
-          <p className="section-desc mx-auto mt-3">Conveniently located and easy to reach.</p>
-        </motion.div>
-
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          {/* Info */}
-          <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} className="grid gap-4 sm:grid-cols-2">
-            {INFO.map(({ icon: Icon, title, text, href }) => (
-              <motion.div key={title} variants={item} className="card">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-navy-900 text-white">
-                  <Icon className="h-5 w-5" strokeWidth={2} />
-                </span>
-                <p className="mt-3 text-sm font-bold text-navy-900">{title}</p>
-                {href ? (
-                  <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="mt-1 block text-sm text-coral-500 hover:underline">{text}</a>
-                ) : (
-                  <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-navy-500">{text}</p>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Map placeholder */}
-          <motion.div initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.5 }} className="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-2xl border border-navy-100/50 bg-navy-50 shadow-soft">
-            <div className="absolute inset-0 opacity-20">
-              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0L0 0 0 48" fill="none" stroke="#627d98" strokeWidth="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
-            </div>
-            <div className="relative z-10 text-center px-6">
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-white shadow-card">
-                <MapPin className="h-6 w-6 text-coral-500" strokeWidth={2} />
-              </span>
-              <p className="mt-3 font-display text-sm font-bold text-navy-800">Map Integration</p>
-              <p className="mt-1 text-xs text-navy-500">Google Maps will be integrated here with<br/>the actual clinic location.</p>
-              <a href="#" className="mt-3 inline-flex items-center gap-1 rounded-full bg-white px-4 py-2 text-xs font-semibold text-coral-500 shadow-sm ring-1 ring-navy-100/60 hover:ring-coral-200">
-                <ExternalLink className="h-3 w-3" />
-                Get Directions
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="contact" className="bg-sand-50 py-20 lg:py-28"><div className="site-container"><div className="grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-center lg:gap-20"><div><p className="section-kicker">Find Ever Smile</p><h2 className="section-heading mt-4">A convenient place to begin your care.</h2><p className="section-copy mt-5">Visit the clinic, call the team, or send a quick WhatsApp message. The actual map coordinates can be added when the production site is finalized.</p><div className="mt-8 space-y-4">{INFO.map(([Icon, title, text], index) => <motion.div key={title} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * .06 }} className="flex gap-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-aqua-700 shadow-soft"><Icon className="h-5 w-5" /></span><div><p className="text-sm font-bold text-ink-950">{title}</p>{title === "Phone" ? <a href="tel:+918593019901" className="mt-1 block text-sm text-aqua-700 hover:underline">{text}</a> : title === "WhatsApp" ? <a href={WA} target="_blank" rel="noopener noreferrer" className="mt-1 block text-sm text-aqua-700 hover:underline">{text}</a> : <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-ink-600">{text}</p>}</div></motion.div>)}</div></div><motion.div initial={{ opacity: 0, scale: .96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative min-h-[390px] overflow-hidden rounded-[2.5rem] border border-ink-100 bg-aqua-100 shadow-lift"><div className="absolute inset-0 opacity-35" style={{ backgroundImage: "linear-gradient(32deg, transparent 46%, rgba(34,123,128,.22) 47%, rgba(34,123,128,.22) 49%, transparent 50%), linear-gradient(112deg, transparent 44%, rgba(34,123,128,.18) 45%, rgba(34,123,128,.18) 47%, transparent 48%)", backgroundSize: "150px 110px" }} /><div className="absolute left-[20%] top-[30%] h-1/2 w-1/2 rotate-12 rounded-[50%] border-4 border-white/60" /><div className="absolute bottom-[20%] right-[15%] h-1/2 w-1/2 -rotate-12 rounded-[50%] border-4 border-white/50" /><div className="absolute inset-0 flex items-center justify-center"><div className="rounded-3xl border border-white/70 bg-white/90 p-7 text-center shadow-card backdrop-blur"><span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-aqua-100 text-aqua-700"><Navigation className="h-5 w-5" /></span><p className="mt-4 font-display font-extrabold text-ink-950">Demo map placeholder</p><p className="mt-1 max-w-[210px] text-xs leading-relaxed text-ink-500">Replace with the verified Google Maps location before launch.</p><a href="#" className="mt-4 inline-flex items-center gap-2 rounded-full bg-ink-950 px-4 py-2 text-xs font-bold text-white hover:bg-ink-800"><MapPin className="h-3.5 w-3.5" />Get directions</a></div></div><span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-white/75 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-aqua-800"><Sparkles className="h-3 w-3" />Demo location</span></motion.div></div></div></section>;
 }

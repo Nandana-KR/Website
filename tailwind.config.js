@@ -4,92 +4,75 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Deep navy — primary brand color
-        navy: {
-          50: "#f0f4f8",
-          100: "#d9e2ec",
-          200: "#bcccdc",
-          300: "#9fb3c8",
-          400: "#829ab1",
-          500: "#627d98",
-          600: "#486581",
-          700: "#334e68",
-          800: "#243b53",
-          900: "#102a43",
-          950: "#0a1929",
+        ink: {
+          50: "#edf5f6",
+          100: "#d8e9eb",
+          200: "#b4d4d8",
+          300: "#86b8be",
+          400: "#5699a1",
+          500: "#347e87",
+          600: "#28656e",
+          700: "#24525b",
+          800: "#21444c",
+          900: "#1e3a41",
+          950: "#10292f",
         },
-        // Warm coral accent
-        coral: {
-          50: "#fff5f5",
-          100: "#ffe3e0",
-          200: "#ffcbc4",
-          300: "#ffa699",
-          400: "#ff7b6b",
-          500: "#f25c4a",
-          600: "#df3d2b",
-          700: "#bb2e1f",
-          800: "#9b291d",
-          900: "#80271e",
+        aqua: {
+          50: "#effafa",
+          100: "#d7f2f1",
+          200: "#b4e5e3",
+          300: "#7ed1cf",
+          400: "#4ab5b5",
+          500: "#2c989a",
+          600: "#227b80",
+          700: "#216269",
+          800: "#205057",
+          900: "#1f434a",
         },
-        // Warm gold secondary
+        sand: {
+          50: "#fffdf9",
+          100: "#faf6ef",
+          200: "#f1e9dc",
+          300: "#e6d8c6",
+          400: "#d4bea0",
+          500: "#c19e78",
+        },
         gold: {
-          50: "#fdfcf7",
-          100: "#fbf7e8",
-          200: "#f6ecc6",
-          300: "#eeda95",
-          400: "#e5c45e",
-          500: "#dbb03a",
-          600: "#c4922d",
-          700: "#a37226",
-          800: "#865b25",
-          900: "#6f4b22",
+          400: "#ddb65b",
+          500: "#c99838",
+          600: "#aa7928",
         },
-        // Backgrounds
-        cream: "#faf9f6",
-        ivory: "#fefdfb",
-        surface: "#ffffff",
       },
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-        display: ["Sora", "Plus Jakarta Sans", "system-ui", "sans-serif"],
-        serif: ["Lora", "Georgia", "serif"],
+        sans: ["DM Sans", "system-ui", "sans-serif"],
+        display: ["Manrope", "DM Sans", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 2px 16px -2px rgba(10, 25, 41, 0.06)",
-        card: "0 8px 32px -8px rgba(10, 25, 41, 0.1)",
-        elevated: "0 16px 48px -12px rgba(10, 25, 41, 0.14)",
-        "inner-glow": "inset 0 1px 2px rgba(255,255,255,0.1)",
+        soft: "0 6px 24px -8px rgba(16, 41, 47, 0.12)",
+        card: "0 18px 45px -18px rgba(16, 41, 47, 0.2)",
+        lift: "0 24px 70px -24px rgba(16, 41, 47, 0.24)",
       },
       borderRadius: {
         "4xl": "2rem",
         "5xl": "2.5rem",
       },
       backgroundImage: {
-        "hero-overlay":
-          "linear-gradient(135deg, rgba(10,25,41,0.92) 0%, rgba(16,42,67,0.85) 50%, rgba(10,25,41,0.75) 100%)",
-        "dark-gradient":
-          "linear-gradient(180deg, #0a1929 0%, #102a43 100%)",
-        "warm-gradient":
-          "linear-gradient(135deg, #faf9f6 0%, #fff5f5 100%)",
+        "hero-wash": "radial-gradient(circle at 80% 0%, rgba(126, 209, 207, .2), transparent 35%), linear-gradient(135deg, #fbfefd 0%, #edf8f7 100%)",
+        "ink-gradient": "linear-gradient(135deg, #10292f 0%, #24525b 100%)",
       },
       keyframes: {
-        "slide-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
+        "soft-rise": {
+          "0%": { opacity: "0", transform: "translateY(22px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "fade-in": {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        "scale-in": {
-          "0%": { opacity: "0", transform: "scale(0.95)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
         },
       },
       animation: {
-        "slide-up": "slide-up 0.7s ease-out forwards",
-        "fade-in": "fade-in 0.5s ease-out forwards",
-        "scale-in": "scale-in 0.6s ease-out forwards",
+        "soft-rise": "soft-rise .7s ease-out forwards",
+        float: "float 5s ease-in-out infinite",
       },
     },
   },

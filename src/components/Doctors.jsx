@@ -1,113 +1,23 @@
 import { motion } from "framer-motion";
-import { Clock } from "lucide-react";
+import { CalendarClock, ChevronRight } from "lucide-react";
 
-// Dentacre-style demo profiles. Replace names, portraits, and schedules with the
-// clinic's approved information before production use.
 const DOCTORS = [
-  {
-    name: "Dr. Jonathan",
-    qualification: "BDS, MDS — Prosthodontics",
-    specialization: "General Dentist",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&h=620&q=85",
-    schedule: [
-      { day: "Monday", time: "09:00 – 15:00" },
-      { day: "Wednesday", time: "09:00 – 15:00" },
-      { day: "Thursday", time: "09:00 – 15:00" },
-    ],
-  },
-  {
-    name: "Dr. Marcell",
-    qualification: "BDS, MDS — Orthodontics",
-    specialization: "General Dentist",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=500&h=620&q=85",
-    schedule: [
-      { day: "Monday", time: "09:00 – 15:00" },
-      { day: "Wednesday", time: "09:00 – 15:00" },
-      { day: "Thursday", time: "09:00 – 15:00" },
-    ],
-  },
-  {
-    name: "Dr. Sofia",
-    qualification: "BDS, MDS — Oral Surgery",
-    specialization: "General Dentist",
-    image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=500&h=620&q=85",
-    schedule: [
-      { day: "Monday", time: "09:00 – 15:00" },
-      { day: "Wednesday", time: "09:00 – 15:00" },
-      { day: "Thursday", time: "09:00 – 15:00" },
-    ],
-  },
+  { name: "Dr. Jonathan", qualification: "BDS, MDS — Prosthodontics", speciality: "General Dentist", image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=700&h=820&q=90", schedule: "Mon · Wed · Thu", time: "09:00 – 15:00" },
+  { name: "Dr. Marcell", qualification: "BDS, MDS — Orthodontics", speciality: "General Dentist", image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&h=820&q=90", schedule: "Mon · Wed · Thu", time: "09:00 – 15:00" },
+  { name: "Dr. Sofia", qualification: "BDS, MDS — Oral Surgery", speciality: "General Dentist", image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&h=820&q=90", schedule: "Mon · Wed · Thu", time: "09:00 – 15:00" },
 ];
-
-const container = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } };
-const item = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
 
 export default function Doctors() {
   return (
-    <section id="doctors" className="bg-cream py-20 lg:py-28">
-      <div className="container-site">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          <p className="section-label justify-center">Our Team</p>
-          <h2 className="section-title mt-4">Meet the <span className="text-coral-500">Experts</span></h2>
-          <p className="section-desc mx-auto mt-3">
-            A dedicated team bringing expertise, innovation, and compassionate care to every appointment.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3"
-        >
-          {DOCTORS.map((doc) => (
-            <motion.div
-              key={doc.name}
-              variants={item}
-              className="group overflow-hidden rounded-2xl border border-navy-100/60 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
-            >
-              <div className="relative aspect-[3/4] overflow-hidden bg-navy-50">
-                <img
-                  src={doc.image}
-                  alt={`${doc.name} — ${doc.specialization} (demo placeholder)`}
-                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/30 via-transparent to-transparent" />
-              </div>
-
-              <div className="p-5">
-                <h3 className="font-display text-lg font-bold text-navy-900">{doc.name}</h3>
-                <p className="mt-0.5 text-sm font-semibold text-coral-500">{doc.specialization}</p>
-                <p className="mt-0.5 text-xs text-navy-400">{doc.qualification}</p>
-
-                <div className="mt-4 rounded-xl bg-navy-50/60 p-3">
-                  <div className="mb-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-navy-700">
-                    <Clock className="h-3 w-3 text-coral-500" strokeWidth={2.5} />
-                    Schedule
-                  </div>
-                  {doc.schedule.map(({ day, time }) => (
-                    <div key={day} className="flex justify-between border-b border-navy-100/50 py-1 text-xs last:border-0">
-                      <span className="text-navy-500">{day}</span>
-                      <span className="font-semibold text-navy-800">{time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <p className="mt-8 text-center text-xs italic text-navy-400">
-          * Doctor profiles and portraits are demo placeholders for presentation only.
-        </p>
+    <section id="doctors" className="bg-white py-20 lg:py-28">
+      <div className="site-container">
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="section-kicker">Meet the team</p><h2 className="section-heading mt-4">People behind your <span className="text-aqua-600">care.</span></h2></div><p className="section-copy max-w-md md:text-right">Professional demo profiles presented for the clinic concept. Approved team details can be added later.</p></div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {DOCTORS.map((doc, index) => <motion.article key={doc.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .1 }} className="group overflow-hidden rounded-[2rem] border border-ink-100/70 bg-white shadow-soft hover:-translate-y-1 hover:shadow-card">
+            <div className="relative aspect-[4/4.7] overflow-hidden bg-aqua-50"><img src={doc.image} alt={`${doc.name}, ${doc.speciality} — demo placeholder`} className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" /><span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-ink-600 backdrop-blur">Demo portrait</span></div>
+            <div className="p-6"><p className="text-xs font-bold uppercase tracking-[.15em] text-aqua-600">{doc.speciality}</p><h3 className="mt-2 font-display text-xl font-extrabold text-ink-950">{doc.name}</h3><p className="mt-1 text-xs text-ink-500">{doc.qualification}</p><div className="mt-5 flex items-center justify-between border-t border-ink-100 pt-4"><div><p className="text-xs font-bold text-ink-800">Availability</p><p className="mt-1 text-xs text-ink-500">{doc.schedule}</p></div><div className="text-right"><CalendarClock className="ml-auto h-4 w-4 text-aqua-600" /><p className="mt-1 text-xs font-semibold text-ink-600">{doc.time}</p></div></div><a href="#contact" className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-aqua-700">Book with the team <ChevronRight className="h-3.5 w-3.5" /></a></div>
+          </motion.article>)}
+        </div>
       </div>
     </section>
   );
