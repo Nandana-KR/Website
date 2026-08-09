@@ -5,7 +5,7 @@ import { Clock } from "lucide-react";
 // clinic's approved information before production use.
 const DOCTORS = [
   {
-    name: "Drg. Jonathan",
+    name: "Dr. Jonathan",
     qualification: "BDS, MDS — Prosthodontics",
     specialization: "General Dentist",
     image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=500&h=620&q=85",
@@ -16,7 +16,7 @@ const DOCTORS = [
     ],
   },
   {
-    name: "Drg. Marcell",
+    name: "Dr. Marcell",
     qualification: "BDS, MDS — Orthodontics",
     specialization: "General Dentist",
     image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=500&h=620&q=85",
@@ -27,10 +27,10 @@ const DOCTORS = [
     ],
   },
   {
-    name: "Drg. Sofia",
+    name: "Dr. Sofia",
     qualification: "BDS, MDS — Oral Surgery",
     specialization: "General Dentist",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&h=620&q=85",
+    image: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=500&h=620&q=85",
     schedule: [
       { day: "Monday", time: "09:00 – 15:00" },
       { day: "Wednesday", time: "09:00 – 15:00" },
